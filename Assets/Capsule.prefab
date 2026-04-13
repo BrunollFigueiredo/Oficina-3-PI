@@ -103,7 +103,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: feb6f4a1d6cffed4b8bfacf9c4c3d111, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 5
+  speed: 100
+  rotationSpeed: 700
 --- !u!136 &6092865420902616002
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -189,5 +190,5 @@ MonoBehaviour:
   jumpImpulse: 8
   acceleration: 10
   braking: 10
-  maxSpeed: 2
+  maxSpeed: 15
   rotationSpeed: 15

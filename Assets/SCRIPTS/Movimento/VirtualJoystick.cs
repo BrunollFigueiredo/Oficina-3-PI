@@ -22,8 +22,8 @@ public class VirtualJoystick : MonoBehaviour, IDragHandler, IPointerDownHandler,
         Vector2 pos;
         if (RectTransformUtility.ScreenPointToLocalPointInRectangle(baseImage.rectTransform, eventData.position, eventData.pressEventCamera, out pos))
         {
-            pos.x = (pos.x / baseImage.rectTransform.sizeDelta.x);
-            pos.y = (pos.y / baseImage.rectTransform.sizeDelta.y);
+            pos.x = (pos.x / (baseImage.rectTransform.sizeDelta.x / 2));
+            pos.y = (pos.y / (baseImage.rectTransform.sizeDelta.y / 2));
 
             inputVector = new Vector2(pos.x * 2, pos.y * 2);
             inputVector = (inputVector.magnitude > 1.0f) ? inputVector.normalized : inputVector;
