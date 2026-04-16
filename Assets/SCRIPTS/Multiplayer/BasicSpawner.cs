@@ -7,12 +7,15 @@ using UnityEngine.SceneManagement;
 
 public enum InputButtons
 {
-    Jump = 0
+    Jump = 0,
+    Fire1 = 1 
 }
 
 public struct NetworkInputData : INetworkInput
 {
     public Vector3 direction;
+    public float lookYaw;
+    public float lookPitch;
     public NetworkButtons buttons;
 }
 
@@ -22,6 +25,8 @@ public class BasicSpawner : MonoBehaviour, INetworkRunnerCallbacks
 
     public static Vector2 TouchMoveInput;
     public static bool JumpPressed;
+    public static float YawInput;
+    public static float PitchInput;
 
     private Dictionary<PlayerRef, NetworkObject> _spawnedCharacters = new Dictionary<PlayerRef, NetworkObject>();
     private NetworkRunner _runner;
@@ -30,35 +35,8 @@ public class BasicSpawner : MonoBehaviour, INetworkRunnerCallbacks
     {
         if (_runner == null)
         {
-            if (GUI.Button(new Rect(0, 0, 200, 40), "Host"))
-                StartGame(GameMode.Host);
-
-            if (GUI.Button(new Rect(0, 40, 200, 40), "Join"))
-                StartGame(GameMode.Client);
-        }
-    }
-
-    public void OnPlayerJoined(NetworkRunner runner, PlayerRef player)
-    {
-        if (runner.IsServer)
-        {
-            NetworkObject networkPlayerObject = runner.Spawn(
-                _playerPrefab,
-                transform.position,
-                transform.rotation,
-                player
-            );
-
-            _spawnedCharacters.Add(player, networkPlayerObject);
-        }
-    }
-
-    public void OnPlayerLeft(NetworkRunner runner, PlayerRef player)
-    {
-        if (_spawnedCharacters.TryGetValue(player, out NetworkObject networkObject))
-        {
-            runner.Despawn(networkObject);
-            _spawnedCharacters.Remove(player);
+            if (GUI.Button(new Rect(0, 0, 200, 40), "Host")) StartGame(GameMode.Host);
+            if (GUI.Button(new Rect(0, 40, 200, 40), "Join")) StartGame(GameMode.Client);
         }
     }
 
@@ -67,18 +45,25 @@ public class BasicSpawner : MonoBehaviour, INetworkRunnerCallbacks
         var data = new NetworkInputData();
 
         Vector3 dir = new Vector3(TouchMoveInput.x, 0f, TouchMoveInput.y);
-
-        if (dir.sqrMagnitude > 1f)
-            dir.Normalize();
-
+        if (dir.sqrMagnitude > 1f) dir.Normalize();
         data.direction = dir;
+
         data.buttons.Set(InputButtons.Jump, JumpPressed);
+        data.lookYaw = YawInput;
+        data.lookPitch = PitchInput;
 
         input.Set(data);
-
         JumpPressed = false;
     }
 
+    public void OnPlayerJoined(NetworkRunner runner, PlayerRef player)
+    {
+        if (runner.IsServer)
+        {
+            runner.Spawn(_playerPrefab, transform.position, transform.rotation, player);
+        }
+    }
+    public void OnPlayerLeft(NetworkRunner runner, PlayerRef player) { }
     public void OnInputMissing(NetworkRunner runner, PlayerRef player, NetworkInput input) { }
     public void OnShutdown(NetworkRunner runner, ShutdownReason shutdownReason) { }
     public void OnConnectedToServer(NetworkRunner runner) { }
@@ -100,14 +85,11 @@ public class BasicSpawner : MonoBehaviour, INetworkRunnerCallbacks
     {
         _runner = gameObject.AddComponent<NetworkRunner>();
         _runner.ProvideInput = true;
-
-        var scene = SceneRef.FromIndex(SceneManager.GetActiveScene().buildIndex);
-
         await _runner.StartGame(new StartGameArgs()
         {
             GameMode = mode,
             SessionName = "TestRoom",
-            Scene = scene,
+            Scene = SceneRef.FromIndex(SceneManager.GetActiveScene().buildIndex),
             SceneManager = gameObject.AddComponent<NetworkSceneManagerDefault>()
         });
     }
