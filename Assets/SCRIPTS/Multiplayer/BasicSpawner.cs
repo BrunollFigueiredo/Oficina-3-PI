@@ -35,8 +35,24 @@ public class BasicSpawner : MonoBehaviour, INetworkRunnerCallbacks
     {
         if (_runner == null)
         {
-            if (GUI.Button(new Rect(0, 0, 200, 40), "Host")) StartGame(GameMode.Host);
-            if (GUI.Button(new Rect(0, 40, 200, 40), "Join")) StartGame(GameMode.Client);
+            // Escala proporcional à resolução
+            float escala = Screen.height / 600f;
+            GUI.matrix = Matrix4x4.TRS(
+                Vector3.zero,
+                Quaternion.identity,
+                new Vector3(escala, escala, 1f)
+            );
+
+            float larguraBotao = 300f;
+            float alturaBotao = 80f;
+            float x = (Screen.width / escala - larguraBotao) / 2f;
+            float y = (Screen.height / escala - alturaBotao * 2) / 2f;
+
+            if (GUI.Button(new Rect(x, y, larguraBotao, alturaBotao), "Host"))
+                StartGame(GameMode.Host);
+
+            if (GUI.Button(new Rect(x, y + alturaBotao, larguraBotao, alturaBotao), "Join"))
+                StartGame(GameMode.Client);
         }
     }
 
