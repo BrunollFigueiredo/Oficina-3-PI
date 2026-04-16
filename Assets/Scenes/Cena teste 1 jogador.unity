@@ -2547,6 +2547,42 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7647092622164550596, guid: 7ec1f7d1b3e73b24d8a40734f7dafced, type: 3}
+      propertyPath: m_Name
+      value: Estante2
+      objectReference: {fileID: 0}
+    - target: {fileID: -7640558969779515294, guid: 7ec1f7d1b3e73b24d8a40734f7dafced, type: 3}
+      propertyPath: m_Name
+      value: ParedePortaSaidaDireita
+      objectReference: {fileID: 0}
+    - target: {fileID: -7276932229322939156, guid: 7ec1f7d1b3e73b24d8a40734f7dafced, type: 3}
+      propertyPath: m_Name
+      value: PortaSaidaEsquerda
+      objectReference: {fileID: 0}
+    - target: {fileID: -7271449666460269675, guid: 7ec1f7d1b3e73b24d8a40734f7dafced, type: 3}
+      propertyPath: m_Name
+      value: ParedeSalaD
+      objectReference: {fileID: 0}
+    - target: {fileID: -2045257923548263128, guid: 7ec1f7d1b3e73b24d8a40734f7dafced, type: 3}
+      propertyPath: m_Name
+      value: ParedeSalaFundo
+      objectReference: {fileID: 0}
+    - target: {fileID: -1599826595754709761, guid: 7ec1f7d1b3e73b24d8a40734f7dafced, type: 3}
+      propertyPath: m_Name
+      value: ParedeEsquerda
+      objectReference: {fileID: 0}
+    - target: {fileID: -466329591000292508, guid: 7ec1f7d1b3e73b24d8a40734f7dafced, type: 3}
+      propertyPath: m_Name
+      value: ParedeDireita
+      objectReference: {fileID: 0}
+    - target: {fileID: -208595431880416365, guid: 7ec1f7d1b3e73b24d8a40734f7dafced, type: 3}
+      propertyPath: m_Name
+      value: ParedePortaSaidaEsquerda
+      objectReference: {fileID: 0}
+    - target: {fileID: 281855664364225751, guid: 7ec1f7d1b3e73b24d8a40734f7dafced, type: 3}
+      propertyPath: m_Name
+      value: ParedeSalaLateral
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 7ec1f7d1b3e73b24d8a40734f7dafced, type: 3}
       propertyPath: m_Name
       value: Fase1.0 (1)
@@ -2559,9 +2595,29 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 3.71
       objectReference: {fileID: 0}
+    - target: {fileID: 5562206448648374956, guid: 7ec1f7d1b3e73b24d8a40734f7dafced, type: 3}
+      propertyPath: m_Name
+      value: Estante.001
+      objectReference: {fileID: 0}
+    - target: {fileID: 6430237281052076468, guid: 7ec1f7d1b3e73b24d8a40734f7dafced, type: 3}
+      propertyPath: m_Name
+      value: Estante3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6432455436435167569, guid: 7ec1f7d1b3e73b24d8a40734f7dafced, type: 3}
+      propertyPath: m_Name
+      value: Estante
+      objectReference: {fileID: 0}
     - target: {fileID: 6471491480312578900, guid: 7ec1f7d1b3e73b24d8a40734f7dafced, type: 3}
       propertyPath: m_LocalPosition.y
       value: -0.37
+      objectReference: {fileID: 0}
+    - target: {fileID: 8416272007918961125, guid: 7ec1f7d1b3e73b24d8a40734f7dafced, type: 3}
+      propertyPath: m_Name
+      value: PortaSaidaDireita
+      objectReference: {fileID: 0}
+    - target: {fileID: 8485173162082002552, guid: 7ec1f7d1b3e73b24d8a40734f7dafced, type: 3}
+      propertyPath: m_Name
+      value: ParedeSalaE
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
